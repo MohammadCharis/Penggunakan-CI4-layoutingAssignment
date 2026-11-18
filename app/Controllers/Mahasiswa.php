@@ -6,14 +6,91 @@ use App\Models\MahasiswaModel;
 
 class Mahasiswa extends BaseController
 {
+    protected $mahasiswaModel;
+
+    public function __construct()
+    {
+        $this->mahasiswaModel = new MahasiswaModel();
+    }
+
     public function index()
     {
-        $model = new MahasiswaModel();
+        return view('mahasiswa/index', [
+            'title' => 'Data Mahasiswa',
+            'mahasiswa' => $this->mahasiswaModel->findAll()
+        ]);
+    }
 
+    public function create()
+    {
+        helper('form');
+
+        return view('mahasiswa/create', [
+            'title' => 'Tambah Mahasiswa'
+        ]);
+    }
+
+    public function store()
+    {
         $data = [
-            'mahasiswa' => $model->getAll()
+            'nim' => trim($this->request->getPost('nim') ?? ''),
+            'nama' => trim($this->request->getPost('nama') ?? ''),
+            'prodi' => trim($this->request->getPost('prodi') ?? '')
         ];
 
-        return view('mahasiswa/index', $data);
+        if ($data['nim'] === '' || $data['nama'] === '' || $data['prodi'] === '') {
+            return redirect()->back()->withInput()->with('error', 'Semua kolom wajib diisi.');
+        }
+
+        $this->mahasiswaModel->insert($data);
+
+        return redirect()->to('/mahasiswa')->with('success', 'Data mahasiswa berhasil ditambahkan.');
+    }
+
+    public function edit($id)
+    {
+        helper('form');
+        $mhs = $this->mahasiswaModel->find($id);
+
+        if (!$mhs) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data mahasiswa tidak ditemukan.');
+        }
+
+        return view('mahasiswa/edit', [
+            'title' => 'Edit Mahasiswa',
+            'mhs' => $mhs
+        ]);
+    }
+
+    public function update($id)
+    {
+        if (!$this->mahasiswaModel->find($id)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data mahasiswa tidak ditemukan.');
+        }
+
+        $data = [
+            'nim' => trim($this->request->getPost('nim') ?? ''),
+            'nama' => trim($this->request->getPost('nama') ?? ''),
+            'prodi' => trim($this->request->getPost('prodi') ?? '')
+        ];
+
+        if ($data['nim'] === '' || $data['nama'] === '' || $data['prodi'] === '') {
+            return redirect()->back()->withInput()->with('error', 'Semua kolom wajib diisi.');
+        }
+
+        $this->mahasiswaModel->update($id, $data);
+
+        return redirect()->to('/mahasiswa')->with('success', 'Data mahasiswa berhasil diperbarui.');
+    }
+
+    public function delete($id)
+    {
+        if (!$this->mahasiswaModel->find($id)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data mahasiswa tidak ditemukan.');
+        }
+
+        $this->mahasiswaModel->delete($id);
+
+        return redirect()->to('/mahasiswa')->with('success', 'Data mahasiswa berhasil dihapus.');
     }
 }

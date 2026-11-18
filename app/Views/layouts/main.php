@@ -60,6 +60,85 @@
         th {
             background: #e9eff6;
         }
+
+        .button {
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 34px;
+            border: 0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: white;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+        .button-primary {
+            background: #2563eb;
+        }
+
+        .button-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .button-secondary {
+            background: #64748b;
+        }
+
+        .button-secondary:hover {
+            background: #475569;
+        }
+
+        .button-edit {
+            background: #f59e0b;
+        }
+
+        .button-edit:hover {
+            background: #d97706;
+        }
+
+        .button-danger {
+            background: #dc2626;
+        }
+
+        .button-danger:hover {
+            background: #b91c1c;
+        }
+
+        .inline-form {
+            display: inline;
+            margin-left: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .form-control {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 300px;
+            padding: 8px;
+            border: 1px solid #bbb;
+            border-radius: 3px;
+            font: inherit;
+        }
+
+        .form-actions {
+            margin-top: 16px;
+        }
     </style>
 </head>
 
