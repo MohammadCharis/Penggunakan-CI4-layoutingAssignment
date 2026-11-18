@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\DosenModel;
+use App\Models\MataKuliahModel;
+
 class Home extends BaseController
 {
     public function index()
@@ -21,12 +24,22 @@ class Home extends BaseController
 
     public function dosen()
     {
-        return view('dosen/index', ['title' => 'Data Dosen']);
+        $model = new DosenModel();
+
+        return view('dosen/index', [
+            'title' => 'Data Dosen',
+            'dosen' => $model->getAll()
+        ]);
     }
 
     public function matakuliah()
     {
-        return view('matakuliah/index', ['title' => 'Data Mata Kuliah']);
+        $model = new MataKuliahModel();
+
+        return view('matakuliah/index', [
+            'title' => 'Data Mata Kuliah',
+            'matakuliah' => $model->getAll()
+        ]);
     }
 
     public function tentang()

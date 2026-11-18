@@ -7,10 +7,10 @@ $routes->get('/', 'Home::index');
 
 $routes->get('/beranda', 'Home::index');
 
-$routes->get('/mahasiswa', 'Home::mahasiswa');
+$routes->get('/mahasiswa', 'Mahasiswa::index');
 
-$routes->get('/dosen', 'Home::dosen');
+$routes->get('dosen', 'Dosen::index');
 
-$routes->get('/mata-kuliah', 'Home::matakuliah');
+$routes->get('mata-kuliah', 'MataKuliah::index');
 
 $routes->get('/tentang', 'Home::tentang');

@@ -14,4 +14,25 @@
     framework CodeIgniter 4.
 </p>
 
+<h3>Biodata Pengembang</h3>
+
+<table>
+    <tr>
+        <th>Nama</th>
+        <td>Moh. Charis Rozikin</td>
+    </tr>
+    <tr>
+        <th>NIM</th>
+        <td>2024 57201 034</td>
+    </tr>
+    <tr>
+        <th>Program Studi</th>
+        <td>Sistem Informasi</td>
+    </tr>
+    <tr>
+        <th>Semester</th>
+        <td>5</td>
+    </tr>
+</table>
+
 <?= $this->endSection() ?>

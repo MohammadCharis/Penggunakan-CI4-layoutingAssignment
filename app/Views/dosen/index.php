@@ -5,23 +5,28 @@
 <h2>Data Dosen</h2>
 
 <table>
-    <tr>
-        <th>NIDN</th>
-        <th>Nama Dosen</th>
-        <th>Program Studi</th>
-    </tr>
-
-    <tr>
-        <td>012345</td>
-        <td>Dr. Ahmad</td>
-        <td>Sistem Informasi</td>
-    </tr>
-
-    <tr>
-        <td>067890</td>
-        <td>Rina, M.Kom.</td>
-        <td>Sistem Informasi</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>NIDN</th>
+            <th>Nama Dosen</th>
+            <th>Prodi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (empty($dosen)): ?>
+            <tr>
+                <td colspan="3">Data dosen belum tersedia.</td>
+            </tr>
+        <?php else: ?>
+            <?php foreach ($dosen as $i => $dsn): ?>
+                <tr>
+                    <td><?= esc($dsn['nidn']) ?></td>
+                    <td><?= esc($dsn['nama']) ?></td>
+                    <td><?= esc($dsn['prodi']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </tbody>
 </table>
 
 <?= $this->endSection() ?>
