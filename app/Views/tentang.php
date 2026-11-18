@@ -16,7 +16,7 @@
 
 <h3>Biodata Pengembang</h3>
 
-<table>
+<table class="biodata-table">
     <tr>
         <th>Nama</th>
         <td>Moh. Charis Rozikin</td>

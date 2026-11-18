@@ -51,6 +51,10 @@
             width: 100%;
         }
 
+        .biodata-table {
+            width: 420px;
+        }
+
         th, td {
             border: 1px solid #ddd;
             padding: 10px;
