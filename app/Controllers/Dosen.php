@@ -8,10 +8,11 @@ class Dosen extends BaseController
 {
     protected $dosenModel;
 
-    public function __construct(DosenModel $dosenModel)
+    public function __construct()
     {
-        $this->dosenModel = $dosenModel;
+        $this->dosenModel = new DosenModel();
     }
+
     public function index()
     {
         return view('dosen/index', [
@@ -20,7 +21,7 @@ class Dosen extends BaseController
         ]);
     }
 
-        public function create()
+    public function create()
     {
         helper('form');
 
@@ -32,64 +33,90 @@ class Dosen extends BaseController
     public function store()
     {
         $data = [
-            'nim' => trim($this->request->getPost('nim') ?? ''),
+            'nidn' => trim($this->request->getPost('nidn') ?? ''),
             'nama' => trim($this->request->getPost('nama') ?? ''),
             'prodi' => trim($this->request->getPost('prodi') ?? '')
         ];
 
-        if ($data['nim'] === '' || $data['nama'] === '' || $data['prodi'] === '') {
-            return redirect()->back()->withInput()->with('error', 'Semua kolom wajib diisi.');
+        if (
+            $data['nidn'] === '' ||
+            $data['nama'] === '' ||
+            $data['prodi'] === ''
+        ) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Semua kolom wajib diisi.');
         }
 
         $this->dosenModel->insert($data);
 
-        return redirect()->to('/dosen')->with('success', 'Data dosen berhasil ditambahkan.');
+        return redirect()->to('/dosen')
+            ->with('success', 'Data dosen berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
         helper('form');
-        $mhs = $this->dosenModel->find($id);
 
-        if (!$mhs) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data mahasiswa tidak ditemukan.');
+        $dsn = $this->dosenModel->find($id);
+
+        if (!$dsn) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
+                'Data dosen tidak ditemukan.'
+            );
         }
 
         return view('dosen/edit', [
             'title' => 'Edit Dosen',
-            'mhs' => $mhs
+            'dsn' => $dsn
         ]);
     }
 
     public function update($id)
     {
-        if (!$this->dosenModel->find($id)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data dosen tidak ditemukan.');
+        $dsn = $this->dosenModel->find($id);
+
+        if (!$dsn) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
+                'Data dosen tidak ditemukan.'
+            );
         }
 
         $data = [
-            'nim' => trim($this->request->getPost('nim') ?? ''),
+            'nidn' => trim($this->request->getPost('nidn') ?? ''),
             'nama' => trim($this->request->getPost('nama') ?? ''),
             'prodi' => trim($this->request->getPost('prodi') ?? '')
         ];
 
-        if ($data['nim'] === '' || $data['nama'] === '' || $data['prodi'] === '') {
-            return redirect()->back()->withInput()->with('error', 'Semua kolom wajib diisi.');
+        if (
+            $data['nidn'] === '' ||
+            $data['nama'] === '' ||
+            $data['prodi'] === ''
+        ) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Semua kolom wajib diisi.');
         }
 
         $this->dosenModel->update($id, $data);
 
-        return redirect()->to('/dosen')->with('success', 'Data dosen berhasil diperbarui.');
+        return redirect()->to('/dosen')
+            ->with('success', 'Data dosen berhasil diperbarui.');
     }
 
     public function delete($id)
     {
-        if (!$this->dosenModel->find($id)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Data dosen tidak ditemukan.');
+        $dsn = $this->dosenModel->find($id);
+
+        if (!$dsn) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound(
+                'Data dosen tidak ditemukan.'
+            );
         }
 
         $this->dosenModel->delete($id);
 
-        return redirect()->to('/dosen')->with('success', 'Data dosen berhasil dihapus.');
+        return redirect()->to('/dosen')
+            ->with('success', 'Data dosen berhasil dihapus.');
     }
 }
