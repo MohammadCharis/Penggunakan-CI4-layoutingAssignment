@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var array $dsn
+ */
+?>
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
