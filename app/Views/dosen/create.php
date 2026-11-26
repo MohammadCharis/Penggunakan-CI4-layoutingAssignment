@@ -9,43 +9,29 @@
 <?php endif; ?>
 
 <form action="<?= site_url('dosen/store') ?>" method="post">
-
     <?= csrf_field() ?>
-
-    <p>
-        <label>NIDN</label><br>
-        <input
-            type="text"
-            name="nidn"
-            value="<?= old('nidn') ?>"
-            required
-        >
-    </p>
-
-    <p>
-        <label>Nama</label><br>
-        <input
-            type="text"
-            name="nama"
-            value="<?= old('nama') ?>"
-            required
-        >
-    </p>
-
-    <p>
-        <label>Program Studi</label><br>
-        <input
-            type="text"
-            name="prodi"
-            value="<?= old('prodi') ?>"
-            required
-        >
-    </p>
-
-    <button type="submit">Simpan</button>
-
-    <a href="<?= site_url('dosen') ?>">Batal</a>
-
+    <div class="form-group">
+        <label for="nidn">NIDN</label>
+        <input class="form-control" id="nidn" type="text" name="nidn" value="<?= old('nidn') ?>" required>
+    </div>
+    <div class="form-group">
+        <label for="nama">Nama Dosen</label>
+        <input class="form-control" id="nama" type="text" name="nama" value="<?= old('nama') ?>" required>
+    </div>
+    <div class="form-group">
+        <label for="prodi">Program Studi</label>
+        <input class="form-control" id="prodi" type="text" name="prodi" value="<?= old('prodi') ?>" required>
+    </div>
+    <div class="form-actions">
+        <button class="button button-primary" type="submit">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z" />
+                <path d="M17 21v-8H7v8M7 3v5h8" />
+            </svg>
+            Simpan
+        </button>
+        <a class="button button-secondary" href="<?= site_url('dosen') ?>">Batal</a>
+    </div>
 </form>
 
 <?= $this->endSection() ?>

@@ -1,8 +1,3 @@
-<?php
-/**
- * @var array $mk
- */
-?>
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
@@ -14,43 +9,29 @@
 <?php endif; ?>
 
 <form action="<?= site_url('mata-kuliah/store') ?>" method="post">
-
     <?= csrf_field() ?>
-
-    <p>
-        <label>Kode</label><br>
-        <input
-            type="text"
-            name="kode"
-            value="<?= old('kode') ?>"
-            required
-        >
-    </p>
-
-    <p>
-        <label>Mata Kuliah</label><br>
-        <input
-            type="text"
-            name="nama"
-            value="<?= old('nama') ?>"
-            required
-        >
-    </p>
-
-    <p>
-        <label>SKS</label><br>
-        <input
-            type="text"
-            name="sks"
-            value="<?= old('sks') ?>"
-            required
-        >
-    </p>
-
-    <button type="submit">Simpan</button>
-
-    <a href="<?= site_url('mata-kuliah') ?>">Batal</a>
-
+    <div class="form-group">
+        <label for="kode">Kode</label>
+        <input class="form-control" id="kode" type="text" name="kode" value="<?= old('kode') ?>" required>
+    </div>
+    <div class="form-group">
+        <label for="nama">Mata Kuliah</label>
+        <input class="form-control" id="nama" type="text" name="nama" value="<?= old('nama') ?>" required>
+    </div>
+    <div class="form-group">
+        <label for="sks">SKS</label>
+        <input class="form-control" id="sks" type="text" name="sks" value="<?= old('sks') ?>" required>
+    </div>
+    <div class="form-actions">
+        <button class="button button-primary" type="submit">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z" />
+                <path d="M17 21v-8H7v8M7 3v5h8" />
+            </svg>
+            Simpan
+        </button>
+        <a class="button button-secondary" href="<?= site_url('mata-kuliah') ?>">Batal</a>
+    </div>
 </form>
 
 <?= $this->endSection() ?>
